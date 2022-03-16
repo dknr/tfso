@@ -1,0 +1,16 @@
+{
+  "name": "tfso",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "mapbox-gl": "^2.7.0"
+  },
+  "devDependencies": {
+    "parcel": "next",
+    "@types/mapbox-gl": "^2.6.3",
+    "@types/react": "^17.0.40"
+  },
+  "scripts": {
+    "start": "parcel serve index.html"
+  }
+}
