@@ -11,6 +11,8 @@
     "@types/react": "^17.0.40"
   },
   "scripts": {
-    "start": "parcel serve index.html"
+    "start": "parcel serve index.html",
+    "build": "parcel build index.html",
+    "publish": "rm -r .parcel-cache dist && parcel build index.html && rsync --archive --delete --progress dist/* seism.app:/var/www/seism.app/"
   }
 }

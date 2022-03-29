@@ -1,10 +1,10 @@
 import {fromNad27} from './proj'
 
-type Point = [number,number];
+export type LatLon = [number,number];
 
 const dms = (d: number, m: number, s: number): number =>
     (Math.abs(d) + Math.abs(m / 60) + Math.abs(s / 3600)) * Math.sign(d);
-export const longPeriodArray: Point[] = [
+export const longPeriodArray: LatLon[] = [
   [dms(34,16, 3.760), dms(-111,16,12.972)],
   [dms(34,23,36.480), dms(-111,15,13.000)],
   [dms(34,19,23.249), dms(-111, 1, 1.673)],
@@ -14,7 +14,7 @@ export const longPeriodArray: Point[] = [
   [dms(34,15,28.296), dms(-111,26,47.180)],
 ].map(fromNad27);
 
-export const shortPeriodArray = [
+export const shortPeriodArray: LatLon[] = [
   [dms(34,16,42.330), dms(-111,18,12.256)], // Z-1
   [dms(34,19,14.119), dms(-111,19,26.672)],
   [dms(34,18,42.576), dms(-111,16,56.073)],
@@ -55,11 +55,34 @@ export const shortPeriodArray = [
 ].map(fromNad27);
 
 // source: TFSO TR 67-34 p.16
-export const portableArray = [
+export const portableArray: LatLon[] = [
   [dms(34, 7,36    ), dms(-111,16,52    )], // PY-1
   [dms(34,12,40    ), dms(-111,18,45    )],
   [dms(34,15,15    ), dms(-111,19,37    )],
-  [dms(34,17,34    ), dms(-111,10,00    )],
-  [dms(34,18,58    ), dms(-111,03,47    )],
+  [dms(34,17,34    ), dms(-111,10, 0    )],
+  [dms(34,18,58    ), dms(-111, 3,47    )],
 ].map(fromNad27);
 
+export type Waypoint = {
+  location: LatLon;
+  name: string;
+  color: string;
+}
+const expand = (data: LatLon[], prefix: string, options: {color: string}): Waypoint[] => data.map((location, index) => {
+  return {
+    location,
+    name: `${prefix}-${index+1}`,
+    color: options.color,
+  }
+});
+
+export const data: Waypoint[] = [
+  ...expand(shortPeriodArray, 'Z', {color: 'blue'}),
+  ...expand(longPeriodArray, 'LP', {color: 'red'}),
+  ...expand(portableArray, 'PY', {color: 'green'}),
+  {location: [34.382482,-111.287791], name: 'Cave', color: 'orange'},
+  {location: [34.385956,-111.303401], name: 'Karst', color: 'orange'},
+  {location: [34.387546,-111.303609], name: 'Cave', color: 'orange'},
+  {location: [34.386760,-111.300701], name: 'Cave', color: 'orange'},
+
+];
