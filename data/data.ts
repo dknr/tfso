@@ -65,13 +65,13 @@ export const portableArray: LatLon[] = [
 
 export type Waypoint = {
   location: LatLon;
-  name: string;
+  tag: string;
   color: string;
 }
 const expand = (data: LatLon[], prefix: string, options: {color: string}): Waypoint[] => data.map((location, index) => {
   return {
     location,
-    name: `${prefix}-${index+1}`,
+    tag: `${prefix}-${index+1}`,
     color: options.color,
   }
 });
@@ -80,9 +80,8 @@ export const data: Waypoint[] = [
   ...expand(shortPeriodArray, 'Z', {color: 'blue'}),
   ...expand(longPeriodArray, 'LP', {color: 'red'}),
   ...expand(portableArray, 'PY', {color: 'green'}),
-  {location: [34.382482,-111.287791], name: 'Cave', color: 'orange'},
-  {location: [34.385956,-111.303401], name: 'Karst', color: 'orange'},
-  {location: [34.387546,-111.303609], name: 'Cave', color: 'orange'},
-  {location: [34.386760,-111.300701], name: 'Cave', color: 'orange'},
-
+  {location: [34.382482,-111.287791], tag: 'Cave', color: 'orange'},
+  {location: [34.385956,-111.303401], tag: 'Karst', color: 'orange'},
+  {location: [34.387546,-111.303609], tag: 'Cave', color: 'orange'},
+  {location: [34.386760,-111.300701], tag: 'Cave', color: 'orange'},
 ];

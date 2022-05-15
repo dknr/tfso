@@ -24,10 +24,13 @@ body {
 .tag {
     color: white;
     width: 64px;
-    text-align: center;
+    height: 16px;
+    /*text-align: center;*/
+    vertical-align: center;
     position: absolute; /* TODO: fix positioning */
-    left: -22px;   /* this is a hack */
-    top: 4px;      /* this too :( */
+    /*left: -22px;   !* this is a hack *!*/
+    top: -14px;      /* this too :( */
+    left: 20px;
     /*background: black;*/
 }
 .tag-hidden {
